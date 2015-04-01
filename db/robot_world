@@ -1,0 +1,11 @@
+---
+robots:
+- id: 1
+  name: Virginia
+  city: Renved
+  state: Odaroloc
+  avatar: Vishnu
+  birthdate: 12-12-1919
+  datehired: 04-06-20
+  department: Liquor Distribution
+total: 1

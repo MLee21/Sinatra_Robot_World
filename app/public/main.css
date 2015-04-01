@@ -1,0 +1,107 @@
+h1 {
+  font-family: 'Covered By Your Grace', sans-serif;
+  font-size: 2em;
+  margin: 15px 0;
+  font-weight: normal;
+  color: #000;
+  background-color: #f5f5dc;
+  padding: 10px;
+}
+
+h2 {
+  font-family: 'Covered By Your Grace', sans-serif;
+  font-size: 1.5em;
+  margin: 15px 0;
+  font-weight: normal;
+  color: #999999;
+  text-decoration: underline;
+  background-color: #c6e2ff;
+}
+
+body {
+  font-family: 'Gurajada', sans-serif;
+  text-align: center;
+  font-size: 1.75em;
+  background-color: #088da5;
+}
+
+body {
+   margin:0;
+   padding:0;
+   height:100%;
+}
+
+#container {
+   min-height: 100%;
+   margin-bottom: -250px;
+   position: relative;
+}
+
+img {
+  position: fixed;
+  top: 275px;
+  right: 200px;
+}
+
+.options {
+  list-style: none;
+  float: left;
+}
+
+.options li a {
+  text-decoration: none;
+  color: #dddddd;
+}
+
+.options li a:hover {
+  color: #ffd700;
+}
+
+legend {
+    font-family: 'Covered By Your Grace', sans-serif;
+    background-color: #000;
+    color: #ffffff;
+}
+
+label {
+  color: #383838;
+}
+
+fieldset {
+  width: 350px;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+
+#footer {
+  height: 250px;
+  position: relative;
+  bottom: 0;
+  width:100%;
+  height:60px; 
+  background-color: #f5f5dc;
+}
+
+.clearfooter {
+height: 250px;
+clear: both;
+}
+
+.robot {
+  float: left;
+  margin-left: 200px;
+  font-size: 1.25em;
+  border: 3px solid #000;
+  padding: 8px;
+}
+
+.create {
+  float: right;
+  margin-left: 100px;
+  font-size: 1.25em;
+  border: 3px solid #000;
+  padding: 8px;
+}
+
