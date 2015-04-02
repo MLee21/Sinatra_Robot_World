@@ -1,0 +1,11 @@
+---
+robots:
+- id: 2
+  name: Wall-E
+  city: Byte-on
+  state: Roborado
+  avatar: Robo2000
+  birthdate: 34-45-89
+  datehired: 23-56-89
+  department: Biological Warfare
+total: 3

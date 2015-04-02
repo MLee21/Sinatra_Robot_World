@@ -1,8 +1,4 @@
-require 'models/robot_manager'
-
 class RobotWorldApp < Sinatra::Base
-  set :root, File.join(File.dirname(__FILE__), '..')
-  set :method_override, true
 
   get '/' do
     erb :dashboard
@@ -28,7 +24,7 @@ class RobotWorldApp < Sinatra::Base
   end
 
   get '/robots/:id/edit' do |id|
-    @task = TaskManager.find(id.to_i)
+    @robot = RobotManager.find(id.to_i)
     erb :edit
   end 
 
@@ -37,8 +33,8 @@ class RobotWorldApp < Sinatra::Base
     redirect "/robots/#{id}"
   end
 
-  delete 'robots/:id' do |id|
-    RobotManager.destroy(id.to_i)
+  delete '/robots/:id' do |id|
+    RobotManager.delete(id.to_i)
     redirect '/robots'
   end
 end
