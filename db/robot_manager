@@ -8,4 +8,12 @@ robots:
   birthdate: 34-45-89
   datehired: 23-56-89
   department: Biological Warfare
-total: 3
+- id: 4
+  name: Creeper
+  city: Commerce City
+  state: Colorado
+  avatar: Gigolo
+  birthdate: 12-45-78
+  datehired: 12-45-89
+  department: Adult Entertainment
+total: 4

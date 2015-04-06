@@ -3,7 +3,7 @@ require_relative '../test_helper'
 class UserDeletesRobotTest < FeatureTest
 
   def create_robot(options={})
-    options[:name]  ||= "Robot"
+    options[:name]  ||= "Robot1"
     options[:city]  ||= "Robot City"
     options[:state] ||= "Robot State"
     options[:avatar] ||= "Robot_One"
@@ -28,6 +28,6 @@ class UserDeletesRobotTest < FeatureTest
     visit '/robots'
     click_link_or_button("Terminate")
     assert '/robots', current_path
-    refute page.has_content?("Robot")
+    refute page.has_content?("Robot1")
   end
 end

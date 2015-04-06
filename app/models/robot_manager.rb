@@ -1,73 +1,55 @@
 require 'yaml/store'
+require 'sequel'
 
 class RobotManager
 
   def self.database
     if ENV["ROBOT_MANAGER_ENV"] == 'test'
-      @database ||= YAML::Store.new("db/robot_manager_test")
+      @database ||= Sequel.sqlite("db/robot_manager_test.sqlite3")
     else
-      @database ||= YAML::Store.new("db/robot_manager")
+      @database ||= Sequel.sqlite("db/robot_manager_development.sqlite3")
     end
   end
 
   def self.create(robot)
-    database.transaction do 
-      database['robots'] ||= []
-      database['total'] ||= 0
-      database['total'] += 1
-      database['robots'] << { "id" => database['total'], 
-                                 "name" => robot[:name],
-                                 "city" => robot[:city],
-                                "state"=> robot[:state],
-                              "avatar"=> robot[:avatar],
-                       "birthdate" => robot[:birthdate],
-                       "datehired" => robot[:datehired],
-                     "department" => robot[:department]
-      }
-    end
-  end
-
-  def self.robots
-    database.transaction do 
-      database['robots'] || []
-    end
+         data = {"name" => robot[:name],
+                 "city" => robot[:city],
+                "state"=> robot[:state],
+              "avatar"=> robot[:avatar],
+       "birthdate" => robot[:birthdate],
+       "datehired" => robot[:datehired],
+     "department" => robot[:department]
+    }
+    database.from(:robots).insert(data)
   end
 
   def self.all
-    robots.map { |robot| Robot.new(robot) }
-  end
-
-  def self.robot(id)
-    robots.find { |robot| robot["id"] == id }
+    database.from(:robots).all.map do |robot|
+      Robot.new(robot)
+    end
   end
 
   def self.find(id)
-    Robot.new(robot(id))
+    robot = database.from(:robots).find(id).first
+    Robot.new(robot)
   end
 
   def self.update(id, robot)
-    database.transaction do
-      target = database['robots'].find { |data| data["id"] == id }
-      target["name"]       = robot[:name]
-      target["city"]       = robot[:city]
-      target["state"]      = robot[:state]
-      target["avatar"]     = robot[:avatar]
-      target["birthdate"]  = robot[:birthdate]
-      target["datehired"]  = robot[:datehired]
-      target["department"] = robot[:department]
-    end
+      database.from(:robots).where([:id => id]).update(
+      :name     =>   robot[:name],
+      :city     =>   robot[:city],
+      :state    =>   robot[:state],
+      :avatar   =>   robot[:avatar],
+      :birthdate =>  robot[:birthdate],
+      :datehired =>  robot[:datehired],
+      :department => robot[:department])
   end
 
   def self.delete(id)
-    database.transaction do 
-      database['robots'].delete_if { |robot| robot["id"] == id }
-    end
-  end
-
+    database.from(:robots).where(:id => id).delete
+  end 
+  
   def self.delete_all
-    database.transaction do
-      database['robots'] = []
-      database['total'] = 0
-    end
+    database.from(:robots).delete
   end
 end

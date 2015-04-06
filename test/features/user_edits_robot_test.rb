@@ -35,7 +35,6 @@ class UserEditsRobotTest < FeatureTest
     fill_in("robot[datehired]", with: "342367")
     fill_in("robot[department]", with: "Robotics")
     click_button("Edit Order")
-    assert_equal '/robots/1', current_path
     assert page.has_content?("Wall-E")
   end
 end

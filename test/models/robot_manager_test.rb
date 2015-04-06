@@ -18,8 +18,7 @@ class RobotManagerTest < MiniTest::Test
 
   def test_it_can_create_a_robot
     create_robots(1)
-    robot = RobotManager.find(1)
-    assert_equal 1, robot.id
+    robot = RobotManager.all.last
     assert_equal "Name:0", robot.name
     assert_equal "City:0", robot.city
     assert_equal "State:0", robot.state
@@ -40,35 +39,29 @@ class RobotManagerTest < MiniTest::Test
     robots = RobotManager.all
     assert_equal 3, robots.count
 
-    robot = RobotManager.find(1)
-    assert_equal 1, robot.id
-    assert_equal "Name:0", robot.name
+    robot = RobotManager.all.last
+    assert_equal "Name:2", robot.name
   end
 
   def test_it_can_change_the_robot
     create_robots(1)
-    robot = RobotManager.find(1)
+    robot = RobotManager.all.last
     assert_equal "Name:0",robot.name
     assert_equal "City:0", robot.city
-    assert_equal 1, robot.id 
 
     new_robot = {name: "Robby", city: "Commerce City"}
-    RobotManager.update(1, new_robot)
-    updated_robot = RobotManager.find(1)
+    RobotManager.update(robot.id, new_robot)
+    updated_robot = RobotManager.all.last
     assert_equal "Robby", updated_robot.name
     assert_equal "Commerce City", updated_robot.city
   end
 
   def test_it_can_delete_a_robot
-    create_robots(3)
-    robot = RobotManager.find(2)
-    assert_equal "Name:1", robot.name 
-    assert_equal 2, robot.id 
-    original = RobotManager.all 
-    assert_equal 3, original.count
+    create_robots(2)
+    assert_equal 2, RobotManager.all.count
 
-    RobotManager.delete(2)
-    robots = RobotManager.all 
-    assert_equal 2, robots.count
+    robot = RobotManager.all.last
+    RobotManager.delete(robot.id)
+    assert_equal 1, RobotManager.all.count
   end
 end

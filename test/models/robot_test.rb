@@ -4,14 +4,14 @@ class RobotTest < MiniTest::Test
 
   def test_it_can_assign_attributes
     robot = Robot.new({
-      "id" => 1,
-      "name" => "Joe",
-      "city" => "Tac",
-      "state" => "Xof",
-      "avatar" => "Vishnu",
-      "birthdate" => "12-56-2678",
-      "datehired" => "12-89-2678",
-      "department" => "liquor distribution"
+      :id => 1,
+      :name => "Joe",
+      :city => "Tac",
+      :state => "Xof",
+      :avatar => "Vishnu",
+      :birthdate => "12-56-2678",
+      :datehired => "12-89-2678",
+      :department => "liquor distribution"
       })
     assert_equal 1, robot.id
     assert_equal "Joe", robot.name
